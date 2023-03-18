@@ -125,6 +125,209 @@ namespace Zaipay.Service
                 throw ex;
             }
         }
-    }
 
+        public async Task<PayResponseObj> CreatePay(PayRequestObj request)
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(request);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+                var url = this.baseUrl + "/v1/payin";
+
+                HttpResponseMessage responseMsg = null;
+                responseMsg = await apiClient.PostAsync(url, data);
+
+                var responseStr = await responseMsg.Content.ReadAsStringAsync();
+                if (responseMsg.IsSuccessStatusCode)
+                {
+                     var response = JsonConvert.DeserializeObject<PayResponseObj>(responseStr);
+                    
+                    return response;
+                }
+                else
+                    throw new Exception($"Error while creating the wallet: Response message is: {responseStr}");
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public async Task<VirtualAccountResponseObj> CreateVirtualAccount(VirtualAccountRequestObj request)
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(request);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+                var url = this.baseUrl + "/v1/virtual-account";
+
+                HttpResponseMessage responseMsg = null;
+                responseMsg = await apiClient.PostAsync(url, data);
+
+                var responseStr = await responseMsg.Content.ReadAsStringAsync();
+                if (responseMsg.IsSuccessStatusCode)
+                {
+                     var response = JsonConvert.DeserializeObject<VirtualAccountResponseObj>(responseStr);
+                    
+                    return response;
+                }
+                else
+                    throw new Exception($"Error while creating the virtual account: Response message is: {responseStr}");
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public async Task<PoliPayResponseObj> CreatePayinPoli(PoliPayRequestObj request)
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(request);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+                var url = this.baseUrl + "/v1/payin";
+
+                HttpResponseMessage responseMsg = null;
+                responseMsg = await apiClient.PostAsync(url, data);
+
+                var responseStr = await responseMsg.Content.ReadAsStringAsync();
+                if (responseMsg.IsSuccessStatusCode)
+                {
+                     var response = JsonConvert.DeserializeObject<PoliPayResponseObj>(responseStr);
+                    
+                    return response;
+                }
+                else
+                    throw new Exception($"Error while creating the virtual account: Response message is: {responseStr}");
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public async Task<WalletResponseObj> GetWalletById(string wallet_id)
+        {
+            try
+            {
+                // var json = JsonConvert.SerializeObject(request);
+                // var data = new StringContent(json, Encoding.UTF8, "application/json");
+                var url = this.baseUrl + $"/v1/wallet?wallet_id={wallet_id}";
+
+                HttpResponseMessage responseMsg = null;
+                responseMsg = await apiClient.GetAsync(url);
+
+                var responseStr = await responseMsg.Content.ReadAsStringAsync();
+                if (responseMsg.IsSuccessStatusCode)
+                {
+                     var response = JsonConvert.DeserializeObject<WalletResponseObj>(responseStr);
+                    
+                    return response;
+                }
+                else
+                    throw new Exception($"Error while creating the virtual account: Response message is: {responseStr}");
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public async Task<WalletFundTransferResponseObj> WalletFundTransfer(WalletFundTransferRequest request)
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(request);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+                var url = this.baseUrl + $"/v1/wallet-fund-transfer";
+
+                HttpResponseMessage responseMsg = null;
+                responseMsg = await apiClient.PostAsync(url, data);
+
+                var responseStr = await responseMsg.Content.ReadAsStringAsync();
+                if (responseMsg.IsSuccessStatusCode)
+                {
+                     var response = JsonConvert.DeserializeObject<WalletFundTransferResponseObj>(responseStr);
+                    
+                    return response;
+                }
+                else
+                    throw new Exception($"Error while creating the virtual account: Response message is: {responseStr}");
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public async Task<VirtualAccountResponseObj2> VirtualAccountSimulate(VirtualAccountRequest2 request)
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(request);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+                var url = this.baseUrl + $"/v1/virtual-account/simulate-payin";
+
+                HttpResponseMessage responseMsg = null;
+                responseMsg = await apiClient.PostAsync(url, data);
+
+                var responseStr = await responseMsg.Content.ReadAsStringAsync();
+                if (responseMsg.IsSuccessStatusCode)
+                {
+                     var response = JsonConvert.DeserializeObject<VirtualAccountResponseObj2>(responseStr);
+                    
+                    return response;
+                }
+                else
+                    throw new Exception($"Error while creating the virtual account: Response message is: {responseStr}");
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public async Task<SimulatePayIdResponseObj> SimulatePayIn(SimulatePayIdRequest request)
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(request);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+                var url = this.baseUrl + $"/v1/payin/simulate";
+
+                HttpResponseMessage responseMsg = null;
+                responseMsg = await apiClient.PostAsync(url, data);
+
+                var responseStr = await responseMsg.Content.ReadAsStringAsync();
+                if (responseMsg.IsSuccessStatusCode)
+                {
+                     var response = JsonConvert.DeserializeObject<SimulatePayIdResponseObj>(responseStr);
+                    
+                    return response;
+                }
+                else
+                    throw new Exception($"Error while creating the virtual account: Response message is: {responseStr}");
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+    }
 }
