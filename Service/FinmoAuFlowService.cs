@@ -1,22 +1,11 @@
-using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 using System.Security.Cryptography;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Zaipay.Configurations;
-using Zaipay.Models;
-using Zaipay.Models.WebHooks;
-using Zaipay.Requests;
-using Zaipay.Responses;
-using Zaipay.ViewModels;
 
 namespace Zaipay.Service
 {

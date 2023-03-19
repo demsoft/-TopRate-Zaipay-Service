@@ -41,6 +41,8 @@ namespace Zaipay
             services.AddTransient<IZaiPayPlatform, ZaiPayPlatformService>();
             services.AddTransient<ICanadaEftPaymentService, CanadaEftPaymentService>();
             services.AddTransient<IFinmoAuFlow, FinmoAuFlowService>();
+            services.AddTransient<IFinmoNzFlowService, FinmoNzFlowService>();
+            services.AddTransient<ICanadaInteracPaymentService, CanadaInteracPaymentService>();
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<ILoggedInUserService, LoggedInUserService>();
            

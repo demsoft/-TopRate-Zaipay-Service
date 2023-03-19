@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace Zaipay.Service
 {
-    public class CanadaEftPaymentService : ICanadaEftPaymentService
+    public class CanadaInteracPaymentService : ICanadaInteracPaymentService
     {
         private readonly HttpClient apiClient;
         public IConfiguration Configuration { get; }
         private string baseUrl ;
     
-        public CanadaEftPaymentService(IConfiguration configuration)
+        public CanadaInteracPaymentService(IConfiguration configuration)
         { 
             Configuration = configuration;
             this.baseUrl = Configuration.GetSection("Apaylo:baseUrl").Value;
@@ -54,19 +54,19 @@ namespace Zaipay.Service
             }
         }
 
-        public async Task<CustomerEFTResponseObj> CreateCustomer(CreateCustomerObj request)
+        public async Task<RequestResponseObj> RequestInterac(RequestInteracObj request)
         {
             try
             {
                 var json = JsonConvert.SerializeObject(request);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
-                var url = this.baseUrl + "/EFT/CreateCustomer";
+                var url = this.baseUrl + "/Merchant/RequestInteracEtransferLink";
 
                 HttpResponseMessage responseMsg = null;
                 responseMsg = await apiClient.PostAsync(url, data);
 
                 var responseStr = await responseMsg.Content.ReadAsStringAsync();
-                var response = JsonConvert.DeserializeObject<CustomerEFTResponseObj>(responseStr);
+                var response = JsonConvert.DeserializeObject<RequestResponseObj>(responseStr);
 
                 return response;
 
@@ -88,94 +88,54 @@ namespace Zaipay.Service
             }
         }
 
-        public async Task<TransactionResponseObj> CreateEFTTransaction(TransactionObj request)
+        public async Task<SearchInteracResponseObj> SearchRequestInterac(SearchRequestInteracObj request)
         {
             try
             {
                 var json = JsonConvert.SerializeObject(request);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
-                var url = this.baseUrl + "/EFT/CreateEFTTransaction";
+                var url = this.baseUrl + "/Merchant/SearchRequestInteracEtransferArray";
 
                 HttpResponseMessage responseMsg = null;
                 responseMsg = await apiClient.PostAsync(url, data);
 
                 var responseStr = await responseMsg.Content.ReadAsStringAsync();
-                var response = JsonConvert.DeserializeObject<TransactionResponseObj>(responseStr);
+                var response = JsonConvert.DeserializeObject<SearchInteracResponseObj>(responseStr);
 
                 return response;
 
             }
             catch (Exception ex)
             {
+
                 throw ex;
             }
         }
 
-        public async Task<SearchResponseObj> SearchEFTTransaction(SearchTransactionObj request)
+        public async Task<WalletResponseObj> GetPaymentLink(string rID)
         {
             try
             {
-                var json = JsonConvert.SerializeObject(request);
-                var data = new StringContent(json, Encoding.UTF8, "application/json");
-                var url = this.baseUrl + "/EFT/SearchEFTTransaction";
+                // var json = JsonConvert.SerializeObject(request);
+                var url = $"https://gateway-web.fit.interac.ca/acceptPaymentRequest.do?rID={rID}";
 
                 HttpResponseMessage responseMsg = null;
-                responseMsg = await apiClient.PostAsync(url, data);
+                responseMsg = await apiClient.GetAsync(url);
 
                 var responseStr = await responseMsg.Content.ReadAsStringAsync();
-                var response = JsonConvert.DeserializeObject<SearchResponseObj>(responseStr);
-
-                return response;
+                if (responseMsg.IsSuccessStatusCode)
+                {
+                     var response = JsonConvert.DeserializeObject<WalletResponseObj>(responseStr);
+                    
+                    return response;
+                }
+                else
+                    throw new Exception($"Error while creating the virtual account: Response message is: {responseStr}");
 
             }
             catch (Exception ex)
             {
-                throw ex;
-            }
-        }
-     
-        public async Task<CustomerEFTResponseObj> CancelEFTTransaction(CancelTransactionObj request)
-        {
-            try
-            {
-                var json = JsonConvert.SerializeObject(request);
-                var data = new StringContent(json, Encoding.UTF8, "application/json");
-                var url = this.baseUrl + "/EFT/CancelEFTTransaction";
 
-                HttpResponseMessage responseMsg = null;
-                responseMsg = await apiClient.PostAsync(url, data);
-
-                var responseStr = await responseMsg.Content.ReadAsStringAsync();
-                var response = JsonConvert.DeserializeObject<CustomerEFTResponseObj>(responseStr);
-
-                return response;
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public async Task<CustomerEFTResponseObj> UpdateEFTCustomerAccount(UpdateCustomerObj request)
-        {
-            try
-            {
-                var json = JsonConvert.SerializeObject(request);
-                var data = new StringContent(json, Encoding.UTF8, "application/json");
-                var url = this.baseUrl + "/EFT/UpdateEFTCustomerAccount";
-
-                HttpResponseMessage responseMsg = null;
-                responseMsg = await apiClient.PostAsync(url, data);
-
-                var responseStr = await responseMsg.Content.ReadAsStringAsync();
-                var response = JsonConvert.DeserializeObject<CustomerEFTResponseObj>(responseStr);
-
-                return response;
-
-            }
-            catch (Exception ex)
-            {
                 throw ex;
             }
         }

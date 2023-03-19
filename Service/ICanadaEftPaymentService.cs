@@ -1,13 +1,14 @@
-using System.Collections.Generic;
+
 using System.Threading.Tasks;
-using Zaipay.Models;
-using Zaipay.Models.WebHooks;
-using Zaipay.ViewModels;
 
 namespace Zaipay.Service
 {
     public interface ICanadaEftPaymentService
     {
-        Task<string> CreateCustomer(CreateCustomerObj request);
+        Task<CustomerEFTResponseObj> CreateCustomer(CreateCustomerObj request);
+        Task<TransactionResponseObj> CreateEFTTransaction(TransactionObj request);
+        Task<SearchResponseObj> SearchEFTTransaction(SearchTransactionObj request);
+        Task<CustomerEFTResponseObj> CancelEFTTransaction(CancelTransactionObj request);
+        Task<CustomerEFTResponseObj> UpdateEFTCustomerAccount(UpdateCustomerObj request);
     }
 }
