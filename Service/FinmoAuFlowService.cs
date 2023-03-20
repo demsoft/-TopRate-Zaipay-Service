@@ -76,7 +76,7 @@ namespace Zaipay.Service
                     return response;
                 }
                 else
-                    throw new Exception($"Error while creating the user: Response message is: {responseStr}");
+                    throw new Exception($"Error while creating the customer: Response message is: {responseStr}");
 
             }
             catch (Exception ex)
@@ -134,7 +134,7 @@ namespace Zaipay.Service
                     return response;
                 }
                 else
-                    throw new Exception($"Error while creating the wallet: Response message is: {responseStr}");
+                    throw new Exception($"Error while creating the pay: Response message is: {responseStr}");
 
             }
             catch (Exception ex)
@@ -192,7 +192,7 @@ namespace Zaipay.Service
                     return response;
                 }
                 else
-                    throw new Exception($"Error while creating the virtual account: Response message is: {responseStr}");
+                    throw new Exception($"Error while creating the pay poli: Response message is: {responseStr}");
 
             }
             catch (Exception ex)
@@ -206,8 +206,6 @@ namespace Zaipay.Service
         {
             try
             {
-                // var json = JsonConvert.SerializeObject(request);
-                // var data = new StringContent(json, Encoding.UTF8, "application/json");
                 var url = this.baseUrl + $"/v1/wallet?wallet_id={wallet_id}";
 
                 HttpResponseMessage responseMsg = null;
@@ -221,7 +219,7 @@ namespace Zaipay.Service
                     return response;
                 }
                 else
-                    throw new Exception($"Error while creating the virtual account: Response message is: {responseStr}");
+                    throw new Exception($"Error while processing: Response message is: {responseStr}");
 
             }
             catch (Exception ex)
@@ -250,7 +248,7 @@ namespace Zaipay.Service
                     return response;
                 }
                 else
-                    throw new Exception($"Error while creating the virtual account: Response message is: {responseStr}");
+                    throw new Exception($"Error while processing: Response message is: {responseStr}");
 
             }
             catch (Exception ex)
@@ -308,7 +306,7 @@ namespace Zaipay.Service
                     return response;
                 }
                 else
-                    throw new Exception($"Error while creating the virtual account: Response message is: {responseStr}");
+                    throw new Exception($"Error while creating the siminulating: Response message is: {responseStr}");
 
             }
             catch (Exception ex)

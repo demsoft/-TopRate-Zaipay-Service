@@ -54,7 +54,7 @@ namespace Zaipay.Service
                     return response;
                 }
                 else
-                    throw new Exception($"Error while creating the user: Response message is: {responseStr}");
+                    throw new Exception($"Error while creating the customer: Response message is: {responseStr}");
 
             }
             catch (Exception ex)
@@ -83,7 +83,7 @@ namespace Zaipay.Service
                     return response;
                 }
                 else
-                    throw new Exception($"Error while creating the user: Response message is: {responseStr}");
+                    throw new Exception($"Error while creating the payment: Response message is: {responseStr}");
 
             }
             catch (Exception ex)
