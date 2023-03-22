@@ -66,14 +66,9 @@ namespace Zaipay.Service
                 responseMsg = await apiClient.PostAsync(url, data);
 
                 var responseStr = await responseMsg.Content.ReadAsStringAsync();
-                if (responseMsg.IsSuccessStatusCode)
-                {
-                    var response = JsonConvert.DeserializeObject<RequestResponseObj>(responseStr);
+                var response = JsonConvert.DeserializeObject<RequestResponseObj>(responseStr);
                     
-                    return response;
-                }
-                else
-                    throw new Exception($"Error while processing: Response message is: {responseStr}");
+                return response;
 
             }
             catch (Exception ex)
@@ -95,15 +90,9 @@ namespace Zaipay.Service
                 responseMsg = await apiClient.PostAsync(url, data);
 
                 var responseStr = await responseMsg.Content.ReadAsStringAsync();
-                if (responseMsg.IsSuccessStatusCode)
-                {
-                    var response = JsonConvert.DeserializeObject<SearchInteracResponseObj>(responseStr);
+                var response = JsonConvert.DeserializeObject<SearchInteracResponseObj>(responseStr);
                     
-                    return response;
-                }
-                else
-                    throw new Exception($"Error while processing: Response message is: {responseStr}");
-
+                return response;
             }
             catch (Exception ex)
             {

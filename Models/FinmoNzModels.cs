@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 
 public class Individual_NZ
     {
@@ -54,6 +55,14 @@ public class Individual_NZ
         public int status_code { get; set; }
         public string status_text { get; set; }
         public CustomerData data { get; set; }
+        public CustomerError error { get; set; }
+    }
+
+    public class CustomerError
+    {
+        public int code { get; set; }
+        public string name { get; set; }
+        public List<string> message { get; set; }
     }
 
 
@@ -150,5 +159,6 @@ public class Individual_NZ
         public int status_code { get; set; }
         public string status_text { get; set; }
         public PayinData_NZ data { get; set; }
+        public CustomerError error { get; set; }
     }
 

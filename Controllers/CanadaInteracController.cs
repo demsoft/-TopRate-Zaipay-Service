@@ -19,7 +19,12 @@ namespace CanadaEftPayment.Controllers
         [Route("Request/Interac/Etransfer/Link")]
         public async Task<ActionResult> RequestInterac([FromBody] RequestInteracObj model)
         {
-            return Ok(await InteracPayment.RequestInterac(model));
+            var res = await InteracPayment.RequestInterac(model);
+            if (res.StatusCode == 200){
+                 return Ok(res);
+            } else {
+                return BadRequest(res);
+            }
         }
 
         [HttpGet]
@@ -34,7 +39,12 @@ namespace CanadaEftPayment.Controllers
         [Route("Search/Interac/Etransfer/Array")]
         public async Task<ActionResult> SearchRequestInterac([FromBody] SearchRequestInteracObj model)
         {
-            return Ok(await InteracPayment.SearchRequestInterac(model));
+            var res = await InteracPayment.SearchRequestInterac(model);
+            if (res.StatusCode == 200){
+                 return Ok(res);
+            } else {
+                return BadRequest(res);
+            }
         }
     }
 }

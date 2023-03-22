@@ -19,35 +19,60 @@ namespace CanadaEftPayment.Controllers
         [Route("Create/Customer")]
         public async Task<ActionResult> CreateCustomer([FromBody] CreateCustomerObj createUser)
         {
-            return Ok(await EftPaymentService.CreateCustomer(createUser));
+            var res = await EftPaymentService.CreateCustomer(createUser);
+            if (res.StatusCode == 200){
+                 return Ok(res);
+            } else {
+                return BadRequest(res);
+            }
         }
 
         [HttpPost]
         [Route("Create/EFTTransaction")]
         public async Task<ActionResult> CreateEFTTransaction([FromBody] TransactionObj model)
         {
-            return Ok(await EftPaymentService.CreateEFTTransaction(model));
+            var res = await EftPaymentService.CreateEFTTransaction(model);
+            if (res.StatusCode == 200){
+                 return Ok(res);
+            } else {
+                return BadRequest(res);
+            }
         }
 
         [HttpPost]
         [Route("Search/EFTTransaction")]
         public async Task<ActionResult> SearchEFTTransaction([FromBody] SearchTransactionObj model)
         {
-            return Ok(await EftPaymentService.SearchEFTTransaction(model));
+            var res = await EftPaymentService.SearchEFTTransaction(model);
+            if (res.StatusCode == 200){
+                 return Ok(res);
+            } else {
+                return BadRequest(res);
+            }
         }
 
         [HttpPost]
         [Route("Cancel/EFTTransaction")]
         public async Task<ActionResult> CancelEFTTransaction([FromBody] CancelTransactionObj model)
         {
-            return Ok(await EftPaymentService.CancelEFTTransaction(model));
+             var res = await EftPaymentService.CancelEFTTransaction(model);
+             if (res.StatusCode == 200){
+                 return Ok(res);
+            } else {
+                return BadRequest(res);
+            }
         }
 
         [HttpPost]
         [Route("Update/EFTCustomerAccount")]
         public async Task<ActionResult> UpdateEFTCustomerAccount([FromBody] UpdateCustomerObj model)
         {
-            return Ok(await EftPaymentService.UpdateEFTCustomerAccount(model));
+            var res = await EftPaymentService.UpdateEFTCustomerAccount(model);
+            if (res.StatusCode == 200){
+                 return Ok(res);
+            } else {
+                return BadRequest(res);
+            }
         }
     }
 }

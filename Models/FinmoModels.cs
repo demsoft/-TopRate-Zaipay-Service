@@ -54,6 +54,7 @@ using System.Collections.Generic;
         public int status_code { get; set; }
         public string status_text { get; set; }
         public CustomerResponseData data { get; set; }
+        public CustomerError error { get; set; }
     }
 
     public class WalletAccountObj
@@ -101,6 +102,7 @@ using System.Collections.Generic;
         public int status_code { get; set; }
         public string status_text { get; set; }
         public WalletResponseData data { get; set; }
+        public Error error { get; set; }
     }
 
     public class WalletRequestObj
@@ -199,6 +201,7 @@ using System.Collections.Generic;
         public int status_code { get; set; }
         public string status_text { get; set; }
         public PayResponseData data { get; set; }
+        public Error error { get; set; }
     }  
 
     public class VirtualAccountRequestObj
@@ -334,6 +337,7 @@ using System.Collections.Generic;
         public int status_code { get; set; }
         public string status_text { get; set; }
         public VirtualAccountResponseData data { get; set; }
+        public Error error { get; set; }
     }
 
     public class VirtualAccountResponseObj2
@@ -446,6 +450,7 @@ using System.Collections.Generic;
         public int status_code { get; set; }
         public string status_text { get; set; }
         public PoliPayDataResponse data { get; set; }
+        public Error error { get; set; }
     }
 
     public class WalletFundTransferRequest
@@ -513,6 +518,7 @@ using System.Collections.Generic;
         public string name { get; set; }
         public string message { get; set; }
     }
+    
 
     public class SimulatePayIdResponseObj
     {

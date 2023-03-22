@@ -47,14 +47,9 @@ namespace Zaipay.Service
                 responseMsg = await apiClient.PostAsync(url, data);
 
                 var responseStr = await responseMsg.Content.ReadAsStringAsync();
-                if (responseMsg.IsSuccessStatusCode)
-                {
-                     var response = JsonConvert.DeserializeObject<CustomerResponseObj>(responseStr);
+                var response = JsonConvert.DeserializeObject<CustomerResponseObj>(responseStr);
                     
-                    return response;
-                }
-                else
-                    throw new Exception($"Error while creating the customer: Response message is: {responseStr}");
+                return response;
 
             }
             catch (Exception ex)

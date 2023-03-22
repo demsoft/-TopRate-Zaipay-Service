@@ -69,14 +69,9 @@ namespace Zaipay.Service
                 responseMsg = await apiClient.PostAsync(url, data);
 
                 var responseStr = await responseMsg.Content.ReadAsStringAsync();
-                if (responseMsg.IsSuccessStatusCode)
-                {
-                     var response = JsonConvert.DeserializeObject<CustomerResponseObject>(responseStr);
+                var response = JsonConvert.DeserializeObject<CustomerResponseObject>(responseStr);
                     
                     return response;
-                }
-                else
-                    throw new Exception($"Error while creating the customer: Response message is: {responseStr}");
 
             }
             catch (Exception ex)
@@ -98,14 +93,9 @@ namespace Zaipay.Service
                 responseMsg = await apiClient.PostAsync(url, data);
 
                 var responseStr = await responseMsg.Content.ReadAsStringAsync();
-                if (responseMsg.IsSuccessStatusCode)
-                {
-                     var response = JsonConvert.DeserializeObject<WalletResponseObj>(responseStr);
+                var response = JsonConvert.DeserializeObject<WalletResponseObj>(responseStr);
                     
-                    return response;
-                }
-                else
-                    throw new Exception($"Error while creating the wallet: Response message is: {responseStr}");
+                return response;
 
             }
             catch (Exception ex)
@@ -127,15 +117,9 @@ namespace Zaipay.Service
                 responseMsg = await apiClient.PostAsync(url, data);
 
                 var responseStr = await responseMsg.Content.ReadAsStringAsync();
-                if (responseMsg.IsSuccessStatusCode)
-                {
-                     var response = JsonConvert.DeserializeObject<PayResponseObj>(responseStr);
+                var response = JsonConvert.DeserializeObject<PayResponseObj>(responseStr);
                     
                     return response;
-                }
-                else
-                    throw new Exception($"Error while creating the pay: Response message is: {responseStr}");
-
             }
             catch (Exception ex)
             {
@@ -185,14 +169,9 @@ namespace Zaipay.Service
                 responseMsg = await apiClient.PostAsync(url, data);
 
                 var responseStr = await responseMsg.Content.ReadAsStringAsync();
-                if (responseMsg.IsSuccessStatusCode)
-                {
-                     var response = JsonConvert.DeserializeObject<PoliPayResponseObj>(responseStr);
+                var response = JsonConvert.DeserializeObject<PoliPayResponseObj>(responseStr);
                     
-                    return response;
-                }
-                else
-                    throw new Exception($"Error while creating the pay poli: Response message is: {responseStr}");
+                return response;
 
             }
             catch (Exception ex)

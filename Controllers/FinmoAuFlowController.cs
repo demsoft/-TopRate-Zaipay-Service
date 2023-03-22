@@ -19,35 +19,61 @@ namespace FinmoAuFlow.Controllers
         [Route("Create/Customer")]
         public async Task<ActionResult> CreateCustomer([FromBody] FinmoCustomerObj createUser)
         {
-            return Ok(await FinmoAuFlow.CreateCustomer(createUser));
+            var res = await FinmoAuFlow.CreateCustomer(createUser);
+            if (res.status_code == 201){
+                 return Ok(res);
+            } else {
+                return BadRequest(res);
+            }
         }
 
         [HttpPost]
         [Route("Create/Wallet")]
         public async Task<ActionResult> CreateWallet([FromBody] WalletRequestObj createWallet)
         {
-            return Ok(await FinmoAuFlow.CreateWallet(createWallet));
+            var res = await FinmoAuFlow.CreateWallet(createWallet);
+            if (res.status_code == 201){
+                 return Ok(res);
+            } else {
+                return BadRequest(res);
+            }
         }
 
         [HttpPost]
         [Route("Create/Pay")]
         public async Task<ActionResult> CreatePay([FromBody] PayRequestObj createPay)
         {
-            return Ok(await FinmoAuFlow.CreatePay(createPay));
+            var res = await FinmoAuFlow.CreatePay(createPay);
+            if (res.status_code == 201){
+                 return Ok(res);
+            } else {
+                return BadRequest(res);
+            }
+            
         }
 
         [HttpPost]
         [Route("Create/Virtual/Account")]
         public async Task<ActionResult> CreateVirtualAccount([FromBody] VirtualAccountRequestObj model)
         {
-            return Ok(await FinmoAuFlow.CreateVirtualAccount(model));
+            var res = await FinmoAuFlow.CreateVirtualAccount(model);
+            if (res.status_code == 201){
+                 return Ok(res);
+            } else {
+                return BadRequest(res);
+            }
         }
 
         [HttpPost]
         [Route("Create/Pay/Poli")]
         public async Task<ActionResult> CreatePayinPoli([FromBody] PoliPayRequestObj model)
         {
-            return Ok(await FinmoAuFlow.CreatePayinPoli(model));
+            var res = await FinmoAuFlow.CreatePayinPoli(model);
+            if (res.status_code == 201){
+                 return Ok(res);
+            } else {
+                return BadRequest(res);
+            }
         }
 
         [HttpGet]

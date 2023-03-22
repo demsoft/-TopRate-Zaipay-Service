@@ -66,15 +66,16 @@ namespace Zaipay.Service
                 responseMsg = await apiClient.PostAsync(url, data);
 
                 var responseStr = await responseMsg.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<CustomerEFTResponseObj>(responseStr);
                 
-                if (responseMsg.IsSuccessStatusCode)
-                {
-                    var response = JsonConvert.DeserializeObject<CustomerEFTResponseObj>(responseStr);
+                // if (responseMsg.IsSuccessStatusCode)
+                // {
+                //     var response = JsonConvert.DeserializeObject<CustomerEFTResponseObj>(responseStr);
                     
-                    return response;
-                }
-                else
-                    throw new Exception($"Error while processing: Response message is: {responseStr}");
+                //     return response;
+                // }
+                // else
+                //     throw new Exception($"Error while processing: Response message is: {responseStr}");
 
             }
             catch (Exception ex)
@@ -97,16 +98,9 @@ namespace Zaipay.Service
 
                 var responseStr = await responseMsg.Content.ReadAsStringAsync();
                 
-                if (responseMsg.IsSuccessStatusCode)
-                {
-                    var response = JsonConvert.DeserializeObject<TransactionResponseObj>(responseStr);
+                var response = JsonConvert.DeserializeObject<TransactionResponseObj>(responseStr);
                     
-                    return response;
-                }
-                else
-                    throw new Exception($"Error while processing: Response message is: {responseStr}");
-
-
+                return response;
             }
             catch (Exception ex)
             {
@@ -126,14 +120,9 @@ namespace Zaipay.Service
                 responseMsg = await apiClient.PostAsync(url, data);
 
                 var responseStr = await responseMsg.Content.ReadAsStringAsync();
-                if (responseMsg.IsSuccessStatusCode)
-                {
-                    var response = JsonConvert.DeserializeObject<SearchResponseObj>(responseStr);
+                var response = JsonConvert.DeserializeObject<SearchResponseObj>(responseStr);
                     
-                    return response;
-                }
-                else
-                    throw new Exception($"Error while processing: Response message is: {responseStr}");
+                return response;
 
             }
             catch (Exception ex)
@@ -154,14 +143,9 @@ namespace Zaipay.Service
                 responseMsg = await apiClient.PostAsync(url, data);
 
                 var responseStr = await responseMsg.Content.ReadAsStringAsync();
-                if (responseMsg.IsSuccessStatusCode)
-                {
-                    var response = JsonConvert.DeserializeObject<CustomerEFTResponseObj>(responseStr);
+                var response = JsonConvert.DeserializeObject<CustomerEFTResponseObj>(responseStr);
                     
-                    return response;
-                }
-                else
-                    throw new Exception($"Error while processing: Response message is: {responseStr}");
+                return response;
 
             }
             catch (Exception ex)
@@ -182,14 +166,9 @@ namespace Zaipay.Service
                 responseMsg = await apiClient.PostAsync(url, data);
 
                 var responseStr = await responseMsg.Content.ReadAsStringAsync();
-                if (responseMsg.IsSuccessStatusCode)
-                {
-                    var response = JsonConvert.DeserializeObject<CustomerEFTResponseObj>(responseStr);
+                var response = JsonConvert.DeserializeObject<CustomerEFTResponseObj>(responseStr);
                     
-                    return response;
-                }
-                else
-                    throw new Exception($"Error while processing: Response message is: {responseStr}");
+                return response;
 
             }
             catch (Exception ex)
